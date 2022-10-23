@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class BootStrapper : MonoBehaviour
 {
-    private Game _game;
+    public ItemPrefabData itemPrefabData;
 
-    public ItemPrefabData _itemData;
+    private Game _game;
 
     void Awake()
     {
-        _game = new Game();
+        _game = new Game(itemPrefabData);
 
         DontDestroyOnLoad(gameObject);
     }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -6,7 +7,9 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
-    private PlayerConfigurator playerConfig;
+    public List<PlayerCurrentItems> playerCurrentItems;
+    public PlayerConfigurator playerConfig;
+    
     private IInputService _inputSrevice;
     private Camera _camera;
     private CharacterController CharacterController;
@@ -14,8 +17,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float Speed;
 
+    [Space(5)]
     [Header("Effects")]
-    [Space(10)]
     [SerializeField] private ParticleSystem footParticles;
 
     void Awake()

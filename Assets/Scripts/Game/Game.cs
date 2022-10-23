@@ -5,11 +5,10 @@ public class Game
 
     public static ItemPrefabData itemData;
 
-    private const string itemDataPath = "";
-
-    public Game()
+    public Game(ItemPrefabData _itemData)
     {
         RegisterInputService();
+        itemData = _itemData;
     }
 
     private static void RegisterInputService()
@@ -20,8 +19,4 @@ public class Game
             InputService = new MobileInputModule();
     }
 
-    private static void RegisterDataResources()
-    {
-        //itemData = Resources.Load();
-    }
 }
