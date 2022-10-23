@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IInputService
 {
-    Vector2 Axis {get; }
+    Vector2 Axis { get; }
 }

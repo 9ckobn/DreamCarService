@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -9,8 +10,13 @@ public class Player : MonoBehaviour
     private IInputService _inputSrevice;
     private Camera _camera;
     private CharacterController CharacterController;
+    private PlayerAnimatorController AnimatorController;
 
     [SerializeField] private float Speed;
+
+    [Header("Effects")]
+    [Space(10)]
+    [SerializeField] private ParticleSystem footParticles;
 
     void Awake()
     {
@@ -22,6 +28,10 @@ public class Player : MonoBehaviour
             _characterController = GetComponent<CharacterController>(),
             _animator = GetComponent<Animator>()
         };
+
+        AnimatorController = gameObject.AddComponent<PlayerAnimatorController>();
+        AnimatorController.animator = playerConfig._animator;
+        AnimatorController.characterController = playerConfig._characterController;
     }
 
     void Start()
@@ -29,6 +39,7 @@ public class Player : MonoBehaviour
         _camera = Camera.main;
     }
 
+    [System.Obsolete]
     void Update()
     {
         Vector3 movementVector = Vector3.zero;
@@ -40,10 +51,17 @@ public class Player : MonoBehaviour
             movementVector.Normalize();
 
             transform.forward = movementVector;
+
+            footParticles.enableEmission = true;
+        }
+        else
+        {
+            footParticles.enableEmission = false;
         }
 
         movementVector += Physics.gravity;
 
         playerConfig._characterController.Move(playerConfig._speed * movementVector * Time.deltaTime);
     }
+
 }

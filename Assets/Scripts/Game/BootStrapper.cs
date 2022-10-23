@@ -6,6 +6,8 @@ public class BootStrapper : MonoBehaviour
 {
     private Game _game;
 
+    public ItemPrefabData _itemData;
+
     void Awake()
     {
         _game = new Game();

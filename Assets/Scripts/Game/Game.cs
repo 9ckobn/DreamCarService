@@ -3,6 +3,10 @@ public class Game
 {
     public static IInputService InputService;
 
+    public static ItemPrefabData itemData;
+
+    private const string itemDataPath = "";
+
     public Game()
     {
         RegisterInputService();
@@ -14,5 +18,10 @@ public class Game
             InputService = new StandaloneInputModule();
         else
             InputService = new MobileInputModule();
+    }
+
+    private static void RegisterDataResources()
+    {
+        //itemData = Resources.Load();
     }
 }
