@@ -19,6 +19,8 @@ public class ItemPlace : MonoBehaviour
 
     IEnumerator Grab;
 
+    bool ifExited;
+
     void Start()
     {
         ItemCount = itemsPositions.Capacity;
@@ -43,33 +45,41 @@ public class ItemPlace : MonoBehaviour
         {
             Player player = other.GetComponent<Player>();
 
+            ifExited = false;
+
             Grab = GrabItem(player);
 
             StartCoroutine(Grab);
-
         }
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        StopCoroutine(Grab);
-    }
+    void OnTriggerExit() => ifExited = true;
 
     private IEnumerator GrabItem(Player player)
     {
-        var currentItemsList = new PlayerCurrentItems();
-        currentItemsList.itemType = itemType;
+        PlayerCurrentItems currentItemsList;
+
+        if (!ArrayExist(player))
+        {
+            currentItemsList = new PlayerCurrentItems();
+            currentItemsList.itemType = itemType;
+            currentItemsList.currentCountOfItems = 0;
+            ItemOnHandsCount = 0;
+        }
+        else
+        {
+            currentItemsList = player.currentItemsArray.Single(item => item.itemType == itemType);
+            ItemOnHandsCount = currentItemsList.currentCountOfItems;
+        }
 
         int allowedCount = player.playerConfig.AllowedCountOfItems(itemType);
 
-        for (int i = 0; i < allowedCount; i++)
+        for (int i = currentItemsList.currentCountOfItems; i < allowedCount; i++)
         {
-            if (IsCanGrab(allowedCount))
+            if (IsCanGrab(allowedCount) && !ifExited)
             {
                 ItemOnHandsCount++;
                 currentItemsList.currentCountOfItems = ItemOnHandsCount;
-
-                Debug.Log("Grab" + itemType.ToString());
 
                 yield return new WaitForSeconds(1);
             }
@@ -82,17 +92,17 @@ public class ItemPlace : MonoBehaviour
 
     private void AddToListCurrentItems(PlayerCurrentItems playerCurrentItems, Player player)
     {
-        if (!player.playerCurrentItems.Exists(item => item.itemType == itemType)) //если такого списка нет вообще
+        if (!ArrayExist(player))
         {
-            player.playerCurrentItems.Add(playerCurrentItems);
+            player.currentItemsArray.Add(playerCurrentItems);
         }
-        else if (player.playerCurrentItems.Exists(item => item.itemType == itemType &&
-        item.currentCountOfItems < player.playerConfig.AllowedCountOfItems(itemType))) //если такой есть и в нем меньше, чем разрешено
+        else if (player.currentItemsArray.Exists(item => item.itemType == itemType &&
+        item.currentCountOfItems < player.playerConfig.AllowedCountOfItems(itemType)))
         {
-            player.playerCurrentItems.Remove(player.playerCurrentItems.Single(item => item.itemType == itemType));
-            player.playerCurrentItems.Add(playerCurrentItems);
+            player.currentItemsArray.Remove(player.currentItemsArray.Single(item => item.itemType == itemType));
+            player.currentItemsArray.Add(playerCurrentItems);
         }
-        else //во всех остальных случаях
+        else
         {
             Debug.Log("Player also have maximum items of type " + itemType);
         }
@@ -100,10 +110,13 @@ public class ItemPlace : MonoBehaviour
 
     private bool IsCanGrab(int count)
     {
-        if (ItemOnHandsCount != count)
+        if (ItemOnHandsCount < count)
             return true;
         else
             return false;
     }
+
+    private bool ArrayExist(Player player) => player.currentItemsArray.Exists(item => item.itemType == itemType);
+
 }
 

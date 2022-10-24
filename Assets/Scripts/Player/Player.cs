@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
-    public List<PlayerCurrentItems> playerCurrentItems;
+    public List<PlayerCurrentItems> currentItemsArray;
     public PlayerConfigurator playerConfig;
     
     private IInputService _inputSrevice;
@@ -35,6 +35,10 @@ public class Player : MonoBehaviour
         AnimatorController = gameObject.AddComponent<PlayerAnimatorController>();
         AnimatorController.animator = playerConfig._animator;
         AnimatorController.characterController = playerConfig._characterController;
+
+        if(currentItemsArray == null)
+            currentItemsArray = new List<PlayerCurrentItems>();
+
     }
 
     void Start()
