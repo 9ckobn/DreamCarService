@@ -7,9 +7,16 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
+    public Transform StackPosition;
+
+    [HideInInspector]
+    public Vector3 lastItemPosition;
+    public float itemOffset;
+
+    public List<Item> AllItems;
     public List<PlayerCurrentItems> currentItemsArray;
     public PlayerConfigurator playerConfig;
-    
+
     private IInputService _inputSrevice;
     private Camera _camera;
     private CharacterController CharacterController;
@@ -36,7 +43,7 @@ public class Player : MonoBehaviour
         AnimatorController.animator = playerConfig._animator;
         AnimatorController.characterController = playerConfig._characterController;
 
-        if(currentItemsArray == null)
+        if (currentItemsArray == null)
             currentItemsArray = new List<PlayerCurrentItems>();
 
     }

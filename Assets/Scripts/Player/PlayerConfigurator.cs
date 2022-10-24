@@ -1,8 +1,3 @@
-using System.Diagnostics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class PlayerConfigurator
@@ -18,7 +13,7 @@ public class PlayerConfigurator
         switch (itemType)
         {
             case ItemType.Tire:
-                return 4;
+                return 8;
             default:
                 return 0;
         }
