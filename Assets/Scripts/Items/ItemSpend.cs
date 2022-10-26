@@ -34,7 +34,6 @@ public class ItemSpend : MonoBehaviour
         {
             yield return new WaitForSeconds(3);
             playerCurrentItems.currentCountOfItems--;
-            Debug.Log(itemType + " was sended");
 
             GameObject neededItem = null;
 

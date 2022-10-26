@@ -66,8 +66,6 @@ public class ItemGrab : MonoBehaviour
         {
             if (IsCanGrab(allowedCount) && !ifExited)
             {
-                Debug.Log("Grab item " + itemType);
-
                 ItemFly itemFly = new ItemFly()
                 {
                     _player = player,

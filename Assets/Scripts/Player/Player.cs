@@ -24,9 +24,11 @@ public class Player : MonoBehaviour
 
     private IInputService _inputSrevice;
     private Camera _camera;
-    private PlayerAnimatorController AnimatorController;
+    public PlayerAnimatorController AnimatorController;
 
     [SerializeField] private float Speed;
+
+    [Min(0.35f)]
     [SerializeField] private float TimeToGetItem;
 
     [Space(5)]

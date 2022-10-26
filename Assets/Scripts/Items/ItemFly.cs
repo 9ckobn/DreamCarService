@@ -23,6 +23,10 @@ public class ItemFly
         _player.StackPointer.transform.localPosition = SetNextPosition(true);
 
         _player.AllItems.Add(currentItem.GetComponent<Item>());
+
+        _player.AnimatorController.isWithHands = _player.AllItems.Count > 0;
+
+        EventListener.OnItemGet();
     }
 
     public Vector3 SetNextPosition(bool ifGet)
@@ -48,6 +52,10 @@ public class ItemFly
         _player.StackPointer.transform.localPosition = SetNextPosition(false);
 
         _player.AllItems.Remove(currentItem.GetComponent<Item>());
+
+        _player.AnimatorController.isWithHands = _player.AllItems.Count > 0;
+
+        EventListener.OnItemSend();
         //currentItem = _player.currentItemsArray[_player.currentItemsArray.Count - 1]
     }
 }
