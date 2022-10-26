@@ -4,6 +4,8 @@ public class PlayerConfigurator
 {
     public float _speed { get; set; }
 
+    public float _timeToGetItem { get; set; }
+
     public Animator _animator { get; set; }
 
     public CharacterController _characterController { get; set; }
@@ -13,7 +15,7 @@ public class PlayerConfigurator
         switch (itemType)
         {
             case ItemType.Tire:
-                return 8;
+                return 4;
             default:
                 return 0;
         }

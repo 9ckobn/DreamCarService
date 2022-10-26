@@ -7,6 +7,8 @@ public abstract class InputModule : IInputService
 
     public abstract Vector2 Axis { get; }
 
+
+    
     protected static Vector2 SimpleInputAxis() =>
         new Vector2(SimpleInput.GetAxis(_horizontalAxis), SimpleInput.GetAxis(_verticalAxis));
 }

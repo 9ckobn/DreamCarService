@@ -909,6 +909,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1364103289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1364103290}
+  m_Layer: 0
+  m_Name: StackParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1364103290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364103289}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.17499924, y: 2.625, z: 2.709999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1629587729}
+  m_Father: {fileID: 543450652354763812}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1421679062 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4993d028e92787549a7afe6a4fda2b7e, type: 3}
@@ -924,7 +956,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1629587729}
   m_Layer: 0
-  m_Name: StackPosition
+  m_Name: StackPointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -937,13 +969,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629587728}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.74, y: 2.65, z: 0.88}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 543450652354763812}
-  m_RootOrder: 5
+  m_Father: {fileID: 1364103290}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1719850393
 MonoBehaviour:
@@ -957,9 +989,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4cd3876ac1ad643949b05410b20cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StackPosition: {fileID: 1629587729}
-  lastItemPosition: {x: 0, y: 0, z: 0}
-  itemOffset: 0
+  StackParent: {fileID: 1364103290}
+  StackPointer: {fileID: 1629587729}
+  ParabolaHeight: 0
+  ItemParabola: {fileID: 0}
   AllItems: []
   Speed: 15
   footParticles: {fileID: 1015885461}
@@ -1882,7 +1915,7 @@ Transform:
   - {fileID: 135240156}
   - {fileID: 14561655}
   - {fileID: 1015885463}
-  - {fileID: 1629587729}
+  - {fileID: 1364103290}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -7,25 +7,31 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
-    public Transform StackPosition;
+    [Header("Stack Configurator")]
+    [Space]
+    public Transform StackParent;
+    public Transform StackPointer;
+    public float ParabolaHeight;
 
     [HideInInspector]
-    public Vector3 lastItemPosition;
-    public float itemOffset;
+    public ItemSender ItemSender;
 
+
+    [Space(5)]
     public List<Item> AllItems;
     public List<PlayerCurrentItems> currentItemsArray;
     public PlayerConfigurator playerConfig;
 
     private IInputService _inputSrevice;
     private Camera _camera;
-    private CharacterController CharacterController;
     private PlayerAnimatorController AnimatorController;
 
     [SerializeField] private float Speed;
+    [SerializeField] private float TimeToGetItem;
 
     [Space(5)]
     [Header("Effects")]
+    [Space]
     [SerializeField] private ParticleSystem footParticles;
 
     void Awake()
@@ -36,7 +42,8 @@ public class Player : MonoBehaviour
         {
             _speed = Speed,
             _characterController = GetComponent<CharacterController>(),
-            _animator = GetComponent<Animator>()
+            _animator = GetComponent<Animator>(),
+            _timeToGetItem = TimeToGetItem
         };
 
         AnimatorController = gameObject.AddComponent<PlayerAnimatorController>();
@@ -77,5 +84,4 @@ public class Player : MonoBehaviour
 
         playerConfig._characterController.Move(playerConfig._speed * movementVector * Time.deltaTime);
     }
-
 }

@@ -19,8 +19,7 @@ public class ItemPlace : ItemGrab
         foreach (var item in Game.itemData.prefab)
             if (item.GetComponent<Item>().itemType == itemType)
                 currentItem = item;
-
-
+                
         foreach (var item in itemsPositions)
         {
             var prefab = Instantiate(currentItem, item);

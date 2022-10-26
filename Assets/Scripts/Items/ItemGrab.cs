@@ -35,7 +35,13 @@ public class ItemGrab : MonoBehaviour
         }
     }
 
-    void OnTriggerExit() => ifExited = true;
+    void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<Player>() != null)
+        {
+            ifExited = true;
+        }
+    }
 
     private IEnumerator GrabItem(Player player)
     {
@@ -61,8 +67,6 @@ public class ItemGrab : MonoBehaviour
             if (IsCanGrab(allowedCount) && !ifExited)
             {
                 Debug.Log("Grab item " + itemType);
-                ItemOnHandsCount++;
-                currentItemsList.currentCountOfItems = ItemOnHandsCount;
 
                 ItemFly itemFly = new ItemFly()
                 {
@@ -70,11 +74,14 @@ public class ItemGrab : MonoBehaviour
                     currentItem = ItemList[ItemList.Count - 1].gameObject
                 };
 
+                ItemOnHandsCount++;
+                currentItemsList.currentCountOfItems = ItemOnHandsCount;
+
                 itemFly.GetObject();
 
-                ItemList.Remove(ItemList[ItemList.Count-1]);
+                ItemList.Remove(ItemList[ItemList.Count - 1]);
 
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(player.playerConfig._timeToGetItem);
             }
         }
 
