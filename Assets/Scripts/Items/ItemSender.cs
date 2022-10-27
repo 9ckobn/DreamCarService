@@ -10,7 +10,7 @@ public class ItemSender : MonoBehaviour
     {
         _player = player;
 
-        var routine = SendObjectByParabola(currentItem, _player.StackPointer.transform.localPosition);
+        var routine = SendObjectByParabola(currentItem, _player.StackPointer.transform.localPosition, false);
 
         StartCoroutine(routine);
     }
@@ -19,14 +19,14 @@ public class ItemSender : MonoBehaviour
     {
         _player = player;
 
-        var routine = SendObjectByParabola(currentItem, endPosition);
+        var routine = SendObjectByParabola(currentItem, endPosition, true);
 
         StartCoroutine(routine);
     }
-    IEnumerator SendObjectByParabola(GameObject itemToSend, Vector3 endPosition)
+    IEnumerator SendObjectByParabola(GameObject itemToSend, Vector3 endPosition, bool needToDestroy)
     {
         float elapsedTime = 0;
-        float totalTime = _player.playerConfig._timeToGetItem;
+        float totalTime = _player.playerConfig._timeToGetItemInMS / 1000f;
 
         while (elapsedTime < totalTime)
         {
@@ -38,6 +38,9 @@ public class ItemSender : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        if(needToDestroy)
+            Destroy(itemToSend);
 
         yield break;
     }

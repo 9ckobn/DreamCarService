@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class ItemFly
 {
@@ -42,6 +45,14 @@ public class ItemFly
         if (currentItem == null)
             return;
 
+
+        var itemIndex = GetItemIndex();
+
+        var bounds = _player.AllItems[itemIndex].GetComponent<BoxCollider>().bounds.size.y;
+
+        for(int i = itemIndex; i < _player.AllItems.Count; i++)
+            _player.AllItems[i].transform.localPosition -= new Vector3(0, bounds, 0);
+
         currentItem.transform.SetParent(null, true);
 
         if (_player.ItemSender == null)
@@ -51,11 +62,23 @@ public class ItemFly
 
         _player.StackPointer.transform.localPosition = SetNextPosition(false);
 
+
         _player.AllItems.Remove(currentItem.GetComponent<Item>());
 
         _player.AnimatorController.isWithHands = _player.AllItems.Count > 0;
 
         EventListener.OnItemSend();
-        //currentItem = _player.currentItemsArray[_player.currentItemsArray.Count - 1]
+    }
+
+    public int GetItemIndex()
+    {
+        for (int i = _player.AllItems.Count; i > 0; i--)
+        {
+            if (_player.AllItems[i - 1].itemType == currentItem.GetComponent<Item>().itemType)
+            {
+                return i - 1;
+            }
+        }
+        return 0;
     }
 }

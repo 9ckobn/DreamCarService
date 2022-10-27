@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
@@ -8,31 +9,77 @@ public class ItemSpend : MonoBehaviour
     IEnumerator Send;
     Player player;
 
+    public bool ThisIsTrashCan;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Player>() != null)
         {
             player = other.GetComponent<Player>();
 
-            foreach (var item in player.currentItemsArray)
-            {
-                if (item.itemType == itemType)
+            if (!ThisIsTrashCan)
+                foreach (var item in player.currentItemsArray)
                 {
-                    Send = ItemSender(item);
-                    StartCoroutine(Send);
-                    break;
+                    if (item.itemType == itemType)
+                    {
+                        Send = ItemSender(item);
+                        StartCoroutine(Send);
+                        break;
+                    }
                 }
+            else
+            {
+                var Send = TrashSender(player);
+                StartCoroutine(Send);
             }
         }
     }
 
-    void OnTriggerExit() => StopCoroutine(Send);
+    void OnTriggerExit()
+    {
+        if (!ThisIsTrashCan) StopCoroutine(Send);
+    }
+
+    IEnumerator TrashSender(Player player)
+    {
+        while (player.AllItems.Count > 0)
+        {
+            yield return new WaitForSeconds(0.1f);
+
+            GameObject neededItem = null;
+            if (player.AllItems.Count - 1 < 0)
+                break;
+
+            neededItem = player.AllItems[player.AllItems.Count - 1].gameObject;
+
+            if (neededItem == null)
+            {
+                Debug.Log("Needed item is empty");
+                break;
+            }
+
+            ItemFly itemFly = new ItemFly()
+            {
+                _player = player,
+                currentItem = neededItem
+            };
+
+            itemFly.SendObject(transform.position);
+        }
+
+        try
+        {
+            foreach (var item in player.currentItemsArray)
+                player.currentItemsArray.Remove(item);
+        }
+        catch {}
+    }
 
     IEnumerator ItemSender(PlayerCurrentItems playerCurrentItems)
     {
         if (playerCurrentItems.currentCountOfItems > 0)
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1);
             playerCurrentItems.currentCountOfItems--;
 
             GameObject neededItem = null;

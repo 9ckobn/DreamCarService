@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float Speed;
 
     [Min(0.35f)]
-    [SerializeField] private float TimeToGetItem;
+    [SerializeField] private int TimeToGetItemInMS;
 
     [Space(5)]
     [Header("Effects")]
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
             _speed = Speed,
             _characterController = GetComponent<CharacterController>(),
             _animator = GetComponent<Animator>(),
-            _timeToGetItem = TimeToGetItem
+            _timeToGetItemInMS = TimeToGetItemInMS
         };
 
         AnimatorController = gameObject.AddComponent<PlayerAnimatorController>();

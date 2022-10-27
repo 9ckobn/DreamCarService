@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerAnimatorController : MonoBehaviour
 {
     private static string MoveHash = "Walk";
-    private static string MoveHndshash = "WalkHands";
     private static string isWithHandsParametr = "isWithHands";
 
     private bool withHands;
