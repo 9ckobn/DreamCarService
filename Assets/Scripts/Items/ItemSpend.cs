@@ -37,7 +37,11 @@ public class ItemSpend : MonoBehaviour
 
     void OnTriggerExit()
     {
-        if (!ThisIsTrashCan) StopCoroutine(Send);
+        try
+        {
+            if (!ThisIsTrashCan) StopCoroutine(Send);
+        }
+        catch {}
     }
 
     IEnumerator TrashSender(Player player)
@@ -72,7 +76,7 @@ public class ItemSpend : MonoBehaviour
             foreach (var item in player.currentItemsArray)
                 player.currentItemsArray.Remove(item);
         }
-        catch {}
+        catch { }
     }
 
     IEnumerator ItemSender(PlayerCurrentItems playerCurrentItems)
