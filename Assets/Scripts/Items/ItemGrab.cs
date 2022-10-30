@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using static TypeConfigurator;
 
 public class ItemGrab : MonoBehaviour
 {
@@ -61,7 +62,7 @@ public class ItemGrab : MonoBehaviour
             ItemOnHandsCount = currentItemsList.currentCountOfItems;
         }
 
-        int allowedCount = player.playerConfig.AllowedCountOfItems(itemType);
+        int allowedCount = AllowedCountOfItems(itemType);
 
         for (int i = currentItemsList.currentCountOfItems; i < allowedCount; i++)
         {
@@ -96,7 +97,7 @@ public class ItemGrab : MonoBehaviour
             player.currentItemsArray.Add(playerCurrentItems);
         }
         else if (player.currentItemsArray.Exists(item => item.itemType == itemType &&
-        item.currentCountOfItems < player.playerConfig.AllowedCountOfItems(itemType)))
+        item.currentCountOfItems < AllowedCountOfItems(itemType)))
         {
             player.currentItemsArray.Remove(player.currentItemsArray.Single(item => item.itemType == itemType));
             player.currentItemsArray.Add(playerCurrentItems);

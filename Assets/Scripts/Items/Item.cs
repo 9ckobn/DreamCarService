@@ -1,14 +1,8 @@
 using UnityEngine;
+using static TypeConfigurator;
 
 public class Item : MonoBehaviour
 {
     public ItemType itemType;
 }
 
-public enum ItemType
-{
-    Oil,
-    Tire,
-    Hammer,
-    Wrench
-}

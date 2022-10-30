@@ -1,11 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
+[RequireComponent(typeof(WishHandler))]
 public class CarAI : MonoBehaviour
 {
-    [SerializeField] SpotsHandler spotsHandler;
+    private SpotsHandler spotsHandler;
+    private WishHandler _wishHandler;
 
     NavMeshAgent navMeshAgent;
 
@@ -20,6 +22,10 @@ public class CarAI : MonoBehaviour
             transform.position = closestHit.position;
             navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
         }
+
+        _wishHandler = GetComponent<WishHandler>();
+
+        spotsHandler = GameDependencies.instance._spotsHandler;
     }
 
     [ContextMenu("Move")]
@@ -62,6 +68,13 @@ public class CarAI : MonoBehaviour
         }
 
         navMeshAgent.SetDestination(lastPoint);
+
+        while (IsMoving())
+        {
+            yield return new WaitForSeconds(1f);
+        }
+
+        var clientWishes = new ClientWishes(_wishHandler);
 
         yield break;
     }

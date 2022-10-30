@@ -26,10 +26,6 @@ public class Player : MonoBehaviour
     private Camera _camera;
     public PlayerAnimatorController AnimatorController;
 
-    [SerializeField] private float Speed;
-
-    [Min(0.35f)]
-    [SerializeField] private int TimeToGetItemInMS;
 
     [Space(5)]
     [Header("Effects")]
@@ -42,10 +38,8 @@ public class Player : MonoBehaviour
 
         playerConfig = new PlayerConfigurator
         {
-            _speed = Speed,
             _characterController = GetComponent<CharacterController>(),
-            _animator = GetComponent<Animator>(),
-            _timeToGetItemInMS = TimeToGetItemInMS
+            _animator = GetComponent<Animator>()
         };
 
         AnimatorController = gameObject.AddComponent<PlayerAnimatorController>();
@@ -85,31 +79,5 @@ public class Player : MonoBehaviour
         movementVector += Physics.gravity;
 
         playerConfig._characterController.Move(playerConfig._speed * movementVector * Time.deltaTime);
-    }
-
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-
-
-        Rigidbody body = hit.collider.attachedRigidbody;
-
-        // no rigidbody
-        if (body == null || body.isKinematic)
-            return;
-
-        // We dont want to push objects below us
-        if (hit.moveDirection.y < -0.3f)
-            return;
-
-        Debug.Log("Collided!");
-        // // Calculate push direction from move direction,
-        // // we only push objects to the sides never up and down
-        // Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-
-        // // If you know how fast your character is trying to move,
-        // // then you can also multiply the push velocity by that.
-
-        // // Apply the push
-        // playerConfig._characterController.Move(-pushDir);
     }
 }

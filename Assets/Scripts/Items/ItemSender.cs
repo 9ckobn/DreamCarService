@@ -1,11 +1,13 @@
+using System.Threading.Tasks;
 using System;
 using System.Collections;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class ItemSender : MonoBehaviour
 {
     private Player _player;
-
+    
     public void GetObjectToHands(Player player, GameObject currentItem)
     {
         _player = player;
@@ -39,7 +41,7 @@ public class ItemSender : MonoBehaviour
             yield return null;
         }
 
-        if(needToDestroy)
+        if (needToDestroy)
             Destroy(itemToSend);
 
         yield break;

@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using static TypeConfigurator;
 
 public class ItemSpend : MonoBehaviour
 {
-    [SerializeField] ItemType itemType;
+    public ItemType itemType;
 
     IEnumerator Send;
     Player player;
@@ -41,7 +42,7 @@ public class ItemSpend : MonoBehaviour
         {
             if (!ThisIsTrashCan) StopCoroutine(Send);
         }
-        catch {}
+        catch { }
     }
 
     IEnumerator TrashSender(Player player)
@@ -67,6 +68,7 @@ public class ItemSpend : MonoBehaviour
                 _player = player,
                 currentItem = neededItem
             };
+
 
             itemFly.SendObject(transform.position);
         }

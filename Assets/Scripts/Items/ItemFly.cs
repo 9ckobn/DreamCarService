@@ -1,7 +1,5 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 
 public class ItemFly
 {
@@ -61,7 +59,6 @@ public class ItemFly
         _player.ItemSender.SpendObject(_player, currentItem, placeToSend);
 
         _player.StackPointer.transform.localPosition = SetNextPosition(false);
-
 
         _player.AllItems.Remove(currentItem.GetComponent<Item>());
 
