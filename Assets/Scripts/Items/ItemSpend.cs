@@ -85,6 +85,8 @@ public class ItemSpend : MonoBehaviour
     {
         if (playerCurrentItems.currentCountOfItems > 0)
         {
+            player.ItemSender.itemSended = false;
+            
             yield return new WaitForSeconds(1);
             playerCurrentItems.currentCountOfItems--;
 
@@ -112,9 +114,13 @@ public class ItemSpend : MonoBehaviour
             };
 
             itemFly.SendObject(transform.position);
+
+            while (!player.ItemSender.itemSended)
+                yield return null;
+
+            Debug.Log("Object was delievered!");
         }
 
         yield break;
     }
 }
-

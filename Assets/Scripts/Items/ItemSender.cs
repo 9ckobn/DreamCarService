@@ -7,6 +7,8 @@ using Cysharp.Threading.Tasks;
 public class ItemSender : MonoBehaviour
 {
     private Player _player;
+
+    public bool itemSended;
     
     public void GetObjectToHands(Player player, GameObject currentItem)
     {
@@ -40,6 +42,8 @@ public class ItemSender : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        itemSended = true;
 
         if (needToDestroy)
             Destroy(itemToSend);

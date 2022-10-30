@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7957223280573390491}
   - component: {fileID: 3642068009154652851}
   - component: {fileID: 5654077579318649225}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: OilPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,6 +126,10 @@ PrefabInstance:
     - target: {fileID: 4304506052473114248, guid: 64face3086126ac4fb7f29db269a6572, type: 3}
       propertyPath: m_Name
       value: OilCan
+      objectReference: {fileID: 0}
+    - target: {fileID: 4304506052473114248, guid: 64face3086126ac4fb7f29db269a6572, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5170740131189911113, guid: 64face3086126ac4fb7f29db269a6572, type: 3}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4620092756509086390}
   - component: {fileID: 8987883309313791348}
   - component: {fileID: 5770155189735382212}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TirePivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,6 +114,10 @@ PrefabInstance:
     - target: {fileID: 4407378483785587136, guid: 13e0e1fa5b192554680a1d477cf6c289, type: 3}
       propertyPath: m_Name
       value: tire
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407378483785587136, guid: 13e0e1fa5b192554680a1d477cf6c289, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2279441217310677099, guid: 13e0e1fa5b192554680a1d477cf6c289, type: 3}

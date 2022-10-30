@@ -1,9 +1,7 @@
-using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
 using static TypeConfigurator;
 
 public class ItemGrab : MonoBehaviour
@@ -15,13 +13,13 @@ public class ItemGrab : MonoBehaviour
 
     public ItemType itemType;
 
-    UniTask Grab;
+    IEnumerator Grab;
     Player player;
     bool ifExited;
 
     int ItemOnHandsCount;
 
-    async void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Player>() != null)
         {
@@ -33,19 +31,17 @@ public class ItemGrab : MonoBehaviour
             {
                 Grab = GrabItem(player);
 
-                await Grab;
+                StartCoroutine(Grab);
             }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-
         ifExited = true;
-
     }
 
-    private async UniTask GrabItem(Player player)
+    private IEnumerator GrabItem(Player player)
     {
         PlayerCurrentItems currentItemsList;
 
@@ -81,9 +77,7 @@ public class ItemGrab : MonoBehaviour
 
                 ItemList.Remove(ItemList[ItemList.Count - 1]);
 
-                await UniTask.Delay(player.playerConfig._timeToGetItemInMS);
-
-                //yield return new WaitForSeconds(player.playerConfig._timeToGetItem);
+                yield return new WaitForSeconds((float)player.playerConfig._timeToGetItemInMS / 1000);
             }
         }
 
