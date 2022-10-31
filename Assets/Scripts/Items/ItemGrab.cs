@@ -64,10 +64,11 @@ public class ItemGrab : MonoBehaviour
         {
             if (IsCanGrab(allowedCount) && !ifExited)
             {
+                yield return new WaitForSeconds(0.75f);
                 ItemFly itemFly = new ItemFly()
                 {
                     _player = player,
-                    currentItem = ItemList[ItemList.Count - 1].gameObject
+                    currentItem = ItemList[ItemList.Count - 1].gameObject,
                 };
 
                 ItemOnHandsCount++;
@@ -77,7 +78,6 @@ public class ItemGrab : MonoBehaviour
 
                 ItemList.Remove(ItemList[ItemList.Count - 1]);
 
-                yield return new WaitForSeconds((float)player.playerConfig._timeToGetItemInMS / 1000);
             }
         }
 

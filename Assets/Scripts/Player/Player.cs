@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public Transform StackParent;
     public Transform StackPointer;
     public float ParabolaHeight;
+    public float ItemStackOffset;
 
     [HideInInspector]
     public ItemSender ItemSender;

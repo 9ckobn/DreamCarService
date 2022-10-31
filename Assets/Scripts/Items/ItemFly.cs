@@ -11,9 +11,22 @@ public class ItemFly
         if (currentItem == null)
             return;
 
+        if (currentItem.TryGetComponent<Rigidbody>(out var rb))
+        {
+            rb.isKinematic = true;
+            rb.useGravity = false;
+        }
+
         currentItem.transform.SetParent(_player.StackParent.gameObject.transform, true);
 
-        currentItem.transform.localEulerAngles = Vector3.zero;
+        if (currentItem.GetComponent<Item>().itemType == TypeConfigurator.ItemType.Wrench)
+            if (_player.AllItems.Count == 0 || _player.AllItems[_player.AllItems.Count - 1].gameObject.transform.localEulerAngles.x == 9.999999f)
+
+                currentItem.transform.localEulerAngles = new Vector3(-10, 0, 0);
+            else
+                currentItem.transform.localEulerAngles = new Vector3(10, 0, 0);
+        else
+            currentItem.transform.localEulerAngles = new Vector3(0, Random.Range(0, 360), 0);
 
         if (_player.ItemSender == null)
             _player.ItemSender = _player.gameObject.AddComponent<ItemSender>();
@@ -32,9 +45,9 @@ public class ItemFly
     public Vector3 SetNextPosition(bool ifGet)
     {
         if (ifGet)
-            return new Vector3(0, _player.StackPointer.transform.localPosition.y + currentItem.GetComponent<BoxCollider>().bounds.size.y + _player.ParabolaHeight, 0);
+            return new Vector3(0, _player.StackPointer.transform.localPosition.y + currentItem.GetComponent<BoxCollider>().bounds.size.y + _player.ItemStackOffset, 0);
         else
-            return new Vector3(0, _player.StackPointer.transform.localPosition.y - currentItem.GetComponent<BoxCollider>().bounds.size.y - _player.ParabolaHeight, 0);
+            return new Vector3(0, _player.StackPointer.transform.localPosition.y - currentItem.GetComponent<BoxCollider>().bounds.size.y - _player.ItemStackOffset, 0);
     }
 
     public void SendObject(Vector3 placeToSend)
@@ -47,7 +60,7 @@ public class ItemFly
 
         var bounds = _player.AllItems[itemIndex].GetComponent<BoxCollider>().bounds.size.y;
 
-        for(int i = itemIndex; i < _player.AllItems.Count; i++)
+        for (int i = itemIndex; i < _player.AllItems.Count; i++)
             _player.AllItems[i].transform.localPosition -= new Vector3(0, bounds, 0);
 
         currentItem.transform.SetParent(null, true);

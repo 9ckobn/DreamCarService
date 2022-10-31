@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dark red
-  m_Shader: {fileID: 4800000, guid: 7cd5de0b884b14f88ab763ef465e1799, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _SEGMENTED_ON
@@ -68,12 +68,12 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.579
     - _GlossyReflections: 1
     - _Lumin: 0
     - _MaxLight: 1
-    - _Metallic: 0
-    - _MinLight: 0
+    - _Metallic: 1
+    - _MinLight: 0.209
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Offset: 0
@@ -91,7 +91,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.33962262, g: 0.09451762, b: 0.09867194, a: 1}
+    - _Color: {r: 0.7830189, g: 0.2474635, b: 0.25506008, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShnColor: {r: 1, g: 1, b: 0, a: 1}
   m_BuildTextureStacks: []

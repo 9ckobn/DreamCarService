@@ -42,23 +42,18 @@ public class PayToEarn : MonoBehaviour, IBuyable
     {
         yield return new WaitForSeconds(1);
 
-        while (MoneyLeft > MoneyLeft - (int)MoneyLeft / 3)
-        {
-            yield return new WaitForSeconds(0.02f);
-            MoneyLeft--;
-            GameDependencies.instance._statsHandler.moneyCounter.MoneyCount--;
-        }
+        int tempLeft = MoneyLeft - (int)(MoneyLeft / 4);
 
-        while (MoneyLeft > MoneyLeft - (int)MoneyLeft / 2)
+        while (MoneyLeft > tempLeft)
         {
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.025f);
             MoneyLeft--;
             GameDependencies.instance._statsHandler.moneyCounter.MoneyCount--;
         }
 
         while (MoneyLeft > 0)
         {
-            yield return new WaitForSeconds(0.005f);
+            yield return new WaitForSeconds(0.001f);
             MoneyLeft--;
             GameDependencies.instance._statsHandler.moneyCounter.MoneyCount--;
         }

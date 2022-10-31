@@ -110,7 +110,7 @@ Material:
     - _Lumin: 0
     - _MaxLight: 1
     - _Metallic: 0
-    - _MinLight: 0
+    - _MinLight: 0.433
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Offset: 0
@@ -136,7 +136,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.4811321, g: 0.31315148, b: 0.21106265, a: 1}
-    - _Color: {r: 0.4811321, g: 0.31315145, b: 0.21106261, a: 1}
+    - _Color: {r: 0.3962264, g: 0.25296408, b: 0.16634032, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShnColor: {r: 1, g: 1, b: 0, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

@@ -9,15 +9,12 @@ public class InGameShopHandler : MonoBehaviour
     {
         if (buyedObject == null)
         {
-            Debug.Log("Shop is not inizialized!");
             try
             {
-                Debug.Log("Read from device");
                 buyedObject = JsonConvert.DeserializeObject<BuyedObject>(WritePlayerData.DecodedString("BuyedObjects.json"));
             }
             catch
             {
-                Debug.Log("creating new");
                 buyedObject = new BuyedObject();
             }
         }

@@ -26,6 +26,8 @@ public static class TypeConfigurator
                 return Game.playerUpgradesData.TireCount;
             case ItemType.Oil:
                 return Game.playerUpgradesData.OilCount;
+            case ItemType.Wrench:
+                return Game.playerUpgradesData.WrenchCount;
             default:
                 return 1;
         }

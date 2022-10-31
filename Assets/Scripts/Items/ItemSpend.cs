@@ -93,7 +93,6 @@ public class ItemSpend : MonoBehaviour
 
             if (neededItem == null)
             {
-                Debug.Log("Needed item is empty");
                 yield break;
             }
 
@@ -107,8 +106,6 @@ public class ItemSpend : MonoBehaviour
 
             while (!player.ItemSender.itemSended)
                 yield return null;
-
-            Debug.Log("Object was delievered!");
 
             GetComponent<CarAI>().GetServiced();
         }

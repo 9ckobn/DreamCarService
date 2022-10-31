@@ -8,7 +8,6 @@ public class PlayerCollector : MonoBehaviour
         if (collectable != null)
         {
             collectable.Collect();
-            Debug.Log("Get money");
         }
     }
 }
