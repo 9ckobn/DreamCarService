@@ -36,15 +36,6 @@ public class ItemSpend : MonoBehaviour
         }
     }
 
-    void OnTriggerExit()
-    {
-        try
-        {
-            if (!ThisIsTrashCan) StopCoroutine(Send);
-        }
-        catch { }
-    }
-
     IEnumerator TrashSender(Player player)
     {
         while (player.AllItems.Count > 0)
@@ -86,8 +77,7 @@ public class ItemSpend : MonoBehaviour
         if (playerCurrentItems.currentCountOfItems > 0)
         {
             player.ItemSender.itemSended = false;
-            
-            yield return new WaitForSeconds(1);
+
             playerCurrentItems.currentCountOfItems--;
 
             GameObject neededItem = null;
@@ -119,6 +109,8 @@ public class ItemSpend : MonoBehaviour
                 yield return null;
 
             Debug.Log("Object was delievered!");
+
+            GetComponent<CarAI>().GetServiced();
         }
 
         yield break;

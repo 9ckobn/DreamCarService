@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
  [CreateAssetMenu(fileName = "Upgrades", menuName = "Dream Car Service/Player/Player Upgrades")]
 public class PlayerUpgrades : ScriptableObject, IWrittable
 {
@@ -16,5 +15,5 @@ public class PlayerUpgrades : ScriptableObject, IWrittable
     public int WrenchCount;
     public int AccumulatorsCount;
     public int DefaulCount;
-
+    public int MoneyCount;
 }

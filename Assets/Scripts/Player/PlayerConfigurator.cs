@@ -12,6 +12,8 @@ public class PlayerConfigurator
 
     public int _timeToGetItemInMS { get; set; }
 
+    public int _moneyCount { get; set; }
+
     public Animator _animator { get; set; }
 
     public CharacterController _characterController { get; set; }

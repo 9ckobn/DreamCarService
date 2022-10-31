@@ -1,5 +1,3 @@
-using System.IO;
-using Newtonsoft.Json;
 using UnityEngine;
 
 public class BootStrapper : MonoBehaviour
@@ -13,9 +11,10 @@ public class BootStrapper : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+
     void OnApplicationQuit()
     {
-        var writeData = new WritePlayerData(Game.playerUpgradesData);
+        WritePlayerData.WriteObject(Game.playerUpgradesData, "Upgrades.json");
     }
 
 

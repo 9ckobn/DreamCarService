@@ -5,6 +5,10 @@ public class GameDependencies : MonoBehaviour
     public static GameDependencies instance = null;
 
     public SpotsHandler _spotsHandler;
+    public MoneyGenerator _moneyGenerator;
+    public StatsHandler _statsHandler;
+    public Player _player;
+    public InGameShopHandler _inGameShop;
 
     private void Awake()
     {

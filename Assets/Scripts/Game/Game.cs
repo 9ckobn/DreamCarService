@@ -9,6 +9,8 @@ public class Game
     public static PlayerUpgrades playerUpgradesData;
     public static WishSpritesData wishSpritesData;
 
+
+
     private static string dataPath;
 
     public Game()
@@ -33,14 +35,7 @@ public class Game
 
         if (playerUpgradesData == null)
         {
-            byte[] bytes = File.ReadAllBytes(dataPath);
-
-            string json = System.Text.Encoding.ASCII.GetString(bytes);
-
-            var decodedData = CoderDecoder.DeShifrovka(json, InGameConstants.password);
-            Debug.Log(decodedData);
-
-            playerUpgradesData = JsonConvert.DeserializeObject<PlayerUpgrades>(decodedData);
+            playerUpgradesData = JsonConvert.DeserializeObject<PlayerUpgrades>(WritePlayerData.DecodedString("Upgrades.json"));
         }
 
     }

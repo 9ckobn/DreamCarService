@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class Spot : MonoBehaviour
+public class Spot : BuyableObject
 {
-    public bool isAvailable;
+    public bool isFree;
 }

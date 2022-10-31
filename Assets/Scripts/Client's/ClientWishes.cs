@@ -9,9 +9,7 @@ public class ClientWishes
     {
         var typeArray = Enum.GetValues(typeof(ItemType));
         Random random = new Random();
-        ItemType randomType = (ItemType)typeArray.GetValue(random.Next(typeArray.Length));
-
-        wishType = randomType;
+        wishType = (ItemType)typeArray.GetValue(random.Next(typeArray.Length));
 
         var itemSender = wishHandler.InitSpender();
         itemSender.itemType = wishType;

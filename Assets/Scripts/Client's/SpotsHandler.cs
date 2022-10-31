@@ -5,23 +5,31 @@ using UnityEngine;
 
 public class SpotsHandler : MonoBehaviour
 {
+    [SerializeField] private PayToEarn BuyMechanism;
     public Spot[] AllSpots;
+
+    float priceIndex = 2f;
+    int pastPrice;
 
     void Start()
     {
-        AllSpots = GetComponentsInChildren<Spot>();
+        pastPrice = 50;
+
+        foreach(var item in AllSpots)
+        {
+            if((GameDependencies.instance._inGameShop.buyedObject.ID_Price.ContainsKey(item.ID)))
+            {
+                item.gameObject.SetActive(true);
+                pastPrice = GameDependencies.instance._inGameShop.buyedObject.ID_Price.GetValueOrDefault(item.ID);
+            }
+            else
+            {   
+                var buyMech = Instantiate(BuyMechanism, item.transform.position, Quaternion.identity, gameObject.transform);
+                buyMech.ObjectTobuy = item;
+                buyMech.Price = (int)(pastPrice * priceIndex);
+                pastPrice = buyMech.Price;
+            }
+        }
     }
-
-    public Spot GetAvailableSpot()
-    {
-        foreach (var item in AllSpots)
-            if (item.isAvailable)
-                return item;
-
-        Debug.Log("Here is not available spots, you need wait");
-        return null;
-    }
-
-    public void BlockSpot(Spot spotToBlock) => spotToBlock.isAvailable = false;
 
 }
