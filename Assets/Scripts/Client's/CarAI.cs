@@ -77,13 +77,13 @@ public class CarAI : MonoBehaviour
     {
         Vector3 tempPoint;
 
-        if(transform.position.x > 0)
+        if(transform.position.z > 0)
         {
-            tempPoint = new Vector3(transform.position.x - 500, 0, transform.position.z);
+            tempPoint = new Vector3(transform.position.z - 500, 0, transform.position.x);
         }
         else
         {
-            tempPoint = new Vector3(transform.position.x + 500, 0, transform.position.z);
+            tempPoint = new Vector3(transform.position.z + 500, 0, transform.position.x);
         }
     
         navMeshAgent.SetDestination(tempPoint);
@@ -98,7 +98,7 @@ public class CarAI : MonoBehaviour
 
     private IEnumerator GetDestinationToService(Vector3 lastPoint)
     {
-        Vector3 tempPoint = new Vector3(lastPoint.x, 0, transform.position.z);
+        Vector3 tempPoint = new Vector3(transform.position.x, 0, lastPoint.z);
 
         navMeshAgent.SetDestination(tempPoint);
 
@@ -123,7 +123,7 @@ public class CarAI : MonoBehaviour
     {
         navMeshAgent.angularSpeed = 0;
 
-        Vector3 tempPoint = new Vector3(transform.position.x, 0, lastPoint.z);
+        Vector3 tempPoint = new Vector3(lastPoint.z, 0, transform.position.x);
 
         navMeshAgent.SetDestination(tempPoint);
 

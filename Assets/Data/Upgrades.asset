@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Upgrades
   m_EditorClassIdentifier: 
   Speed: 15
-  GettingItemSpeed: 300
+  GettingItemSpeed: 500
   TireCount: 4
   OilCount: 8
   WrenchCount: 3
   AccumulatorsCount: 2
   DefaulCount: 1
-  MoneyCount: 7833
+  MoneyCount: 8240

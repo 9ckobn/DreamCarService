@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 44ae09ed76086b14e82d37feb30c7650, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1641e38e99618c34eaed12d3ac64a3ec, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CoatMaskMap:
@@ -112,7 +112,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 17198718c5735204999fb13dc36e290f, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 50, y: 50}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
@@ -199,7 +199,7 @@ Material:
     - _Anisotropy: 0
     - _Blend: 0
     - _BlendMode: 0
-    - _BumpScale: 1
+    - _BumpScale: 0.2
     - _CoatMask: 0
     - _Cull: 2
     - _CullMode: 2
@@ -331,7 +331,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 0.254717, g: 0.254717, b: 0.254717, a: 0}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
