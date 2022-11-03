@@ -20,6 +20,7 @@ public class MoneyGenerator : MonoBehaviour
         {
             var money = Instantiate(MoneyPrefab, generatePosition, Quaternion.identity);
             yield return new WaitForSeconds(0.1f);
+            EventListener.OnMoneyGenerated();
         }
     }
 }

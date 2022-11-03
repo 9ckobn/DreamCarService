@@ -16,14 +16,17 @@ public class CarAI : MonoBehaviour
     Vector3 destinationPoint;
     Vector3 startPoint;
 
+    public Transform tempSpot;
+    public Transform secondTempSpot;
+
     void Start()
     {
         //NavMeshHit closestHit;
 
         //if (NavMesh.SamplePosition(transform.position, out closestHit, 500, 1))
-       // {
-            //transform.position = closestHit.position;
-            navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
+        // {
+        //transform.position = closestHit.position;
+        navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
         //}
 
         _wishHandler = GetComponent<WishHandler>();
@@ -77,15 +80,15 @@ public class CarAI : MonoBehaviour
     {
         Vector3 tempPoint;
 
-        if(transform.position.z > 0)
+        if (transform.position.z > 0)
         {
-            tempPoint = new Vector3(transform.position.z - 500, 0, transform.position.x);
+            tempPoint = new Vector3(transform.position.x, 0, transform.position.z - 500);
         }
         else
         {
-            tempPoint = new Vector3(transform.position.z + 500, 0, transform.position.x);
+            tempPoint = new Vector3(transform.position.x, 0, transform.position.z + 500);
         }
-    
+
         navMeshAgent.SetDestination(tempPoint);
 
         while (IsMoving())
@@ -98,14 +101,21 @@ public class CarAI : MonoBehaviour
 
     private IEnumerator GetDestinationToService(Vector3 lastPoint)
     {
-        Vector3 tempPoint = new Vector3(transform.position.x, 0, lastPoint.z);
-
-        navMeshAgent.SetDestination(tempPoint);
+        navMeshAgent.SetDestination(tempSpot.position);
 
         while (IsMoving())
         {
             yield return new WaitForSeconds(0.5f);
         }
+
+
+        navMeshAgent.SetDestination(secondTempSpot.position);
+
+        while (IsMoving())
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+
 
         navMeshAgent.SetDestination(lastPoint);
 
@@ -121,11 +131,17 @@ public class CarAI : MonoBehaviour
 
     private IEnumerator Getback(Vector3 lastPoint)
     {
-        navMeshAgent.angularSpeed = 0;
+        navMeshAgent.angularSpeed = 360;
 
-        Vector3 tempPoint = new Vector3(lastPoint.z, 0, transform.position.x);
+        navMeshAgent.SetDestination(secondTempSpot.position);
 
-        navMeshAgent.SetDestination(tempPoint);
+        while (IsMoving())
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+
+
+        navMeshAgent.SetDestination(tempSpot.position);
 
         while (IsMoving())
         {

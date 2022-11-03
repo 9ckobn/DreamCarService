@@ -17,7 +17,7 @@ public class MoneyInstantiating : MonoBehaviour
         this.enabled = true;
         GetComponent<BoxCollider>().enabled = true;
         _startPosition = transform.position;
-        _velocity *= Random.Range(6f, 8f);
+        _velocity *= Random.Range(10f, 14f);
         _velocity += new Vector3(Random.Range(-2f, 2f), 0, Random.Range(-2f, 2f));
     }
 

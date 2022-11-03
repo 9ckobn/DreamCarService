@@ -8,6 +8,9 @@ public class ClientsHandler : MonoBehaviour
 
     [SerializeField] private CarAI[] CarAIPrefabs;
 
+    [SerializeField] private Transform TempSpot;
+    [SerializeField] private Transform SecondTempSpot;
+
     void Start()
     {
         var routine = Spawner();
@@ -25,6 +28,9 @@ public class ClientsHandler : MonoBehaviour
             int clientIndex = Random.Range(0, CarAIPrefabs.Length);
 
             var Car = Instantiate(CarAIPrefabs[clientIndex], SpotsToSpawn[spotIndex].position, SpotsToSpawn[spotIndex].rotation, null);
+
+            Car.GetComponent<CarAI>().tempSpot = TempSpot;
+            Car.GetComponent<CarAI>().secondTempSpot = SecondTempSpot;
         }
     }
 }

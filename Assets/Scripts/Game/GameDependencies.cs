@@ -9,6 +9,7 @@ public class GameDependencies : MonoBehaviour
     public StatsHandler _statsHandler;
     public Player _player;
     public InGameShopHandler _inGameShop;
+    public VFXManager _vfxManager;
 
     private void Awake()
     {

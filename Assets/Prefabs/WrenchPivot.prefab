@@ -143,7 +143,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 239d938c5bac32141b44038579d2aadb, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: de700394c0631b44f9a69ec41c480db5, type: 2}
+      objectReference: {fileID: 2100000, guid: bc075d3e6c141474e82ca4f677c14e75, type: 2}
     - target: {fileID: 919132149155446097, guid: 239d938c5bac32141b44038579d2aadb, type: 3}
       propertyPath: m_Name
       value: GAECHNI_CLUCH

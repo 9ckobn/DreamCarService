@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     [Space]
     [SerializeField] private ParticleSystem footParticles;
 
+
     void Awake()
     {
         _inputSrevice = Game.InputService;
@@ -49,7 +50,6 @@ public class Player : MonoBehaviour
 
         if (currentItemsArray == null)
             currentItemsArray = new List<PlayerCurrentItems>();
-
     }
 
     void Start()

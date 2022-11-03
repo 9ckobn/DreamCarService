@@ -107,6 +107,8 @@ public class ItemSpend : MonoBehaviour
             while (!player.ItemSender.itemSended)
                 yield return null;
 
+            yield return new WaitForSeconds(0.5f);
+
             GetComponent<CarAI>().GetServiced();
         }
 
